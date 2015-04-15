@@ -5,24 +5,24 @@ angular.module('mobionicApp.data', [])
     var data = {};
     
     data.items = [
-        { 
-            title: 'News',
-            icon: 'ion-ios7-calendar-outline',
-            note: 'Latest News',
-            url: '#/app/news'
-        },
-        { 
-            title: 'Products',
-            icon: 'ion-ios7-cart',
-            note: 'Our Products',
-            url: '#/app/products'
-        },
-        { 
-            title: 'Gallery',
-            icon: 'ion-images',
-            note: 'Our Photos',
-            url: '#/app/gallery'
-        },
+        //{ 
+        //    title: 'News',
+        //    icon: 'ion-ios7-calendar-outline',
+        //    note: 'Latest News',
+        //    url: '#/app/news'
+        //},
+        //{ 
+        //    title: 'Products',
+        //    icon: 'ion-ios7-cart',
+        //    note: 'Our Products',
+        //    url: '#/app/products'
+        //},
+        //{ 
+        //    title: 'Gallery',
+        //    icon: 'ion-images',
+        //    note: 'Our Photos',
+        //    url: '#/app/gallery'
+        //},
         { 
             title: 'Map',
             icon: 'ion-map',
@@ -53,24 +53,24 @@ angular.module('mobionicApp.data', [])
             note: 'RSS Feed',
             url: '#/app/feeds-refresher'
         },
-        { 
-            title: 'Wordpress JSON',
-            icon: 'ion-social-wordpress',
-            note: 'JSON API plugin',
-            url: '#/app/posts'
-        },
-        { 
-            title: 'Wordpress Pagination',
-            icon: 'ion-ionic',
-            note: 'Server Side',
-            url: '#/app/serverposts'
-        },
-        { 
-            title: 'Mobile Plugins',
-            icon: 'ion-iphone',
-            note: 'Cordova/PhoneGap',
-            url: '#/app/plugins'
-        },
+        //{ 
+        //    title: 'Wordpress JSON',
+        //    icon: 'ion-social-wordpress',
+        //    note: 'JSON API plugin',
+        //    url: '#/app/posts'
+        //},
+        //{ 
+        //    title: 'Wordpress Pagination',
+        //    icon: 'ion-ionic',
+        //    note: 'Server Side',
+        //    url: '#/app/serverposts'
+        //},
+        //{ 
+        //    title: 'Mobile Plugins',
+        //    icon: 'ion-iphone',
+        //    note: 'Cordova/PhoneGap',
+        //    url: '#/app/plugins'
+        //},
     ]; 
     
     return data;
@@ -436,7 +436,7 @@ angular.module('mobionicApp.data', [])
 // RSS Feeds Data: JSON
 .factory('FeedsData', function($http, $q, FeedsStorage) {
     
-    var xml = 'http://www.huffingtonpost.com/feeds/index.xml';
+    var xml = 'https://news.google.co.za/news?pz=1&cf=all&ned=en_za&hl=en&output=rss';
     var url = 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(xml);
     
     var deferred = $q.defer();
