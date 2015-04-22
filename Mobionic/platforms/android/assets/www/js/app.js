@@ -112,6 +112,15 @@ angular.module('mobionicApp', ['ionic', 'mobionicApp.controllers', 'mobionicApp.
         }
       }
     })
+    .state('app.flickr', {
+        url: "/flickr",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/flickr.html",
+                controller: 'FlickrCtrl'
+            }
+        }
+    })
 
     .state('app.gallery', {
       url: "/gallery",

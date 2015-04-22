@@ -97,6 +97,10 @@
                     ],
                     "/manifest": [
                         {
+                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
+                            "count": 2
+                        },
+                        {
                             "xml": "<uses-permission android:name=\"android.permission.CAMERA\" />",
                             "count": 1
                         },
@@ -127,10 +131,6 @@
                         {
                             "xml": "<uses-permission android:name=\"android.permission.WAKE_LOCK\" />",
                             "count": 1
-                        },
-                        {
-                            "xml": "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\" />",
-                            "count": 2
                         },
                         {
                             "xml": "<permission android:name=\"com.hybridapps.mobionic.permission.C2D_MESSAGE\" android:protectionLevel=\"signature\" />",

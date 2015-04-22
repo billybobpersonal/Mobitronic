@@ -53,6 +53,12 @@ angular.module('mobionicApp.data', [])
             note: 'RSS Feed',
             url: '#/app/feeds-refresher'
         },
+        {
+            title: 'Flickr',
+            icon: 'ion-map',
+            note: 'Find Us',
+            url: '#/app/flickr'
+        },
         //{ 
         //    title: 'Wordpress JSON',
         //    icon: 'ion-social-wordpress',

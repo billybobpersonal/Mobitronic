@@ -387,6 +387,7 @@
     <Content Include="platforms\android\assets\www\templates\menu.html" />
     <Content Include="platforms\android\assets\www\templates\new.html" />
     <Content Include="platforms\android\assets\www\templates\news.html" />
+    <Content Include="platforms\android\assets\www\templates\flickr.html" />
     <Content Include="platforms\android\assets\www\templates\plugins.html" />
     <Content Include="platforms\android\assets\www\templates\plugins\barcodescanner.html" />
     <Content Include="platforms\android\assets\www\templates\plugins\device.html" />
