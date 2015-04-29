@@ -1,112 +1,112 @@
 angular.module('mobionicApp.controllers', [])
 
 // Home Controller
-.controller('HomeCtrl', function($scope, Data) {
-  $scope.items = Data.items;
+.controller('HomeCtrl', function ($scope, Data) {
+    $scope.items = Data.items;
 })
 
 // News Controller
-.controller('NewsCtrl', function($scope, $ionicLoading, NewsData, NewsStorage) {
-    
+.controller('NewsCtrl', function ($scope, $ionicLoading, NewsData, NewsStorage) {
+
     $scope.news = [];
     $scope.storage = '';
-    
+
     $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-c"></i> Loading Data',
+        template: '<i class="icon ion-loading-c"></i> Loading Data',
 
-      //Will a dark overlay or backdrop cover the entire view
-      showBackdrop: false,
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
 
-      // The delay in showing the indicator
-      showDelay: 10
+        // The delay in showing the indicator
+        showDelay: 10
     });
-    
+
     NewsData.async().then(
         // successCallback
-        function() {
+        function () {
             $scope.news = NewsData.getAll();
             $ionicLoading.hide();
         },
         // errorCallback 
-        function() {
+        function () {
             $scope.news = NewsStorage.all();
             $scope.storage = 'Data from local storage';
             $ionicLoading.hide();
         },
         // notifyCallback
-        function() {}
+        function () { }
     );
 
 })
 
 // New Controller
-.controller('NewCtrl', function($scope, $stateParams, NewsData) {
+.controller('NewCtrl', function ($scope, $stateParams, NewsData) {
 
     $scope.new = NewsData.get($stateParams.newId);
-    
+
 })
 
 // Products Controller
-.controller('ProductsCtrl', function($scope, $ionicLoading, ProductsData, ProductsStorage) {
-    
+.controller('ProductsCtrl', function ($scope, $ionicLoading, ProductsData, ProductsStorage) {
+
     $scope.products = [];
     $scope.storage = '';
-    
+
     $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-c"></i> Loading Data',
+        template: '<i class="icon ion-loading-c"></i> Loading Data',
 
-      //Will a dark overlay or backdrop cover the entire view
-      showBackdrop: false,
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
 
-      // The delay in showing the indicator
-      showDelay: 10
+        // The delay in showing the indicator
+        showDelay: 10
     });
-    
+
     ProductsData.async().then(
         // successCallback
-        function() {
+        function () {
             $scope.products = ProductsData.getAll();
             $scope.letterLimit = ProductsData.getLetterLimit();
             $ionicLoading.hide();
         },
         // errorCallback 
-        function() {
+        function () {
             $scope.products = ProductsStorage.all();
             $scope.letterLimit = ProductsData.getLetterLimit();
             $scope.storage = 'Data from local storage';
             $ionicLoading.hide();
         },
         // notifyCallback
-        function() {}
+        function () { }
     );
-    
+
 })
 
 // Product Controller
-.controller('ProductCtrl', function($scope, $stateParams, ProductsData) {
-    
+.controller('ProductCtrl', function ($scope, $stateParams, ProductsData) {
+
     $scope.product = ProductsData.get($stateParams.productId);
-    
+
 })
 
 // Gallery Controller
-.controller('GalleryCtrl', function($scope, GalleryData) {
+.controller('GalleryCtrl', function ($scope, GalleryData) {
 
     $scope.items = GalleryData.items;
 
 })
 
 // Map Controller
-.controller('MapCtrl', function($scope, MapData) {
+.controller('MapCtrl', function ($scope, MapData) {
 
     $scope.windowOptions = false;
 
     $scope.onClick = function () {
-    this.windowOptions = !this.windowOptions;
+        this.windowOptions = !this.windowOptions;
     };
 
     $scope.closeClick = function () {
-    this.windowOptions = false;
+        this.windowOptions = false;
     };
 
     $scope.map = MapData.map;
@@ -114,61 +114,87 @@ angular.module('mobionicApp.controllers', [])
 })
 
 // About Controller
-.controller('AboutCtrl', function($scope, $ionicLoading, AboutData, AboutStorage) {
-    
-    $scope.about = [];
-    
-    $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-c"></i> Loading Data',
+.controller('AboutCtrl', function ($scope, $ionicLoading, AboutData, AboutStorage) {
 
-      //Will a dark overlay or backdrop cover the entire view
-      showBackdrop: false,
-        
-      // The delay in showing the indicator
-      showDelay: 10
+    $scope.about = [];
+
+    $scope.loading = $ionicLoading.show({
+        template: '<i class="icon ion-loading-c"></i> Loading Data',
+
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
+
+        // The delay in showing the indicator
+        showDelay: 10
     });
-    
+
     AboutData.async().then(
         // successCallback
-        function() {
+        function () {
             $scope.about = AboutData.getAll();
             $ionicLoading.hide();
         },
         // errorCallback 
-        function() {
+        function () {
             $scope.about = AboutStorage.all();
             $scope.storage = 'Data from local storage';
             $ionicLoading.hide();
         },
         // notifyCallback
-        function() {}
+        function () { }
     );
-    
+
+})
+    // Flickr Controller
+.controller('FlickrCtrl', function ($scope) {
+    $scope.fetchPhotos = function () {
+        $scope.failed = false;
+        $scope.isFetching = true;
+
+        $.ajax({
+            url: "http://api.flickr.com/services/feeds/photos_public.gne?format=json",
+            dataType: "jsonp",
+            jsonpCallback: 'jsonFlickrFeed',
+            success: function (feeds) {
+                $scope.$apply(function () {
+                    $scope.feeds = feeds;
+                    $scope.isFetching = false;
+                    $scope.failed = false;
+                });
+            },
+            error: function (error) {
+                $scope.$apply(function () {
+                    $scope.failed = true;
+                    $scope.isFetching = false;
+                });
+            }
+        });
+    };
 })
 
 // Member Controller
-.controller('MemberCtrl', function($scope, $stateParams, AboutData) {
-    
+.controller('MemberCtrl', function ($scope, $stateParams, AboutData) {
+
     $scope.member = AboutData.get($stateParams.memberId);
-    
+
 })
 
 // Contact Controller
-.controller('ContactCtrl', function($scope) {
-    
+.controller('ContactCtrl', function ($scope) {
+
     $scope.contact = {
-      subject:  '',
-      body: ''
+        subject: '',
+        body: ''
     }
-    
-    $scope.submitForm = function() {
+
+    $scope.submitForm = function () {
 
         window.plugin.email.open({
-            to:      ['username@company.com'],
-            cc:      ['username1@company.com'],
-            bcc:     ['username2@company.com'],
+            to: ['username@company.com'],
+            cc: ['username1@company.com'],
+            bcc: ['username2@company.com'],
             subject: $scope.contact.subject,
-            body:    $scope.contact.body
+            body: $scope.contact.body
         });
 
     };
@@ -176,75 +202,75 @@ angular.module('mobionicApp.controllers', [])
 })
 
 // Posts Controller
-.controller('PostsCtrl', function($scope, $ionicLoading, PostsData, PostsStorage) {
-    
+.controller('PostsCtrl', function ($scope, $ionicLoading, PostsData, PostsStorage) {
+
     $scope.posts = [];
     $scope.storage = '';
-    
+
     $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-c"></i> Loading Data',
+        template: '<i class="icon ion-loading-c"></i> Loading Data',
 
-      //Will a dark overlay or backdrop cover the entire view
-      showBackdrop: false,
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
 
-      // The delay in showing the indicator
-      showDelay: 10
+        // The delay in showing the indicator
+        showDelay: 10
     });
-    
+
     PostsData.async().then(
         // successCallback
-        function() {
+        function () {
             $scope.posts = PostsData.getAll().posts;
             $ionicLoading.hide();
         },
         // errorCallback 
-        function() {
+        function () {
             $scope.posts = PostsStorage.all().posts;
             $scope.storage = 'Data from local storage';
             $ionicLoading.hide();
         },
         // notifyCallback
-        function() {}
+        function () { }
     );
-    
+
     var page = 1;
     // Define the number of the posts in the page
     var pageSize = 3;
 
-    $scope.paginationLimit = function(data) {
-    return pageSize * page;
+    $scope.paginationLimit = function (data) {
+        return pageSize * page;
     };
 
-    $scope.hasMoreItems = function() {
-    return page < ($scope.posts.length / pageSize);
+    $scope.hasMoreItems = function () {
+        return page < ($scope.posts.length / pageSize);
     };
 
-    $scope.showMoreItems = function() {
-    page = page + 1;       
-    }; 
-    
+    $scope.showMoreItems = function () {
+        page = page + 1;
+    };
+
 })
 
 // Post Controller
-.controller('PostCtrl', function($scope, $stateParams, PostsData, $sce) {
+.controller('PostCtrl', function ($scope, $stateParams, PostsData, $sce) {
 
     $scope.post = PostsData.get($stateParams.postId);
-    
+
     $scope.content = $sce.trustAsHtml($scope.post.content);
-    
+
     $scope.loadURL = function (url) {
         //target: The target in which to load the URL, an optional parameter that defaults to _self. (String)
         //_self: Opens in the Cordova WebView if the URL is in the white list, otherwise it opens in the InAppBrowser.
         //_blank: Opens in the InAppBrowser.
         //_system: Opens in the system's web browser.
-        window.open(url,'_blank');
+        window.open(url, '_blank');
     }
-    
+
     $scope.sharePost = function () {
 
         var subject = $scope.post.title;
         var message = $scope.post.content;
-        message = message.replace(/(<([^>]+)>)/ig,"");
+        message = message.replace(/(<([^>]+)>)/ig, "");
 
         var link = $scope.post.url;
 
@@ -252,31 +278,31 @@ angular.module('mobionicApp.controllers', [])
         //window.plugins.socialsharing.share('Message', 'Subject', 'Image', 'Link');
         window.plugins.socialsharing.share(message, subject, null, link);
     }
-    
+
 })
 
 // ServerPosts Controller
-.controller('ServerPostsCtrl', function($scope, $http, $ionicLoading, ServerPostsData, ServerPostsStorage) {
+.controller('ServerPostsCtrl', function ($scope, $http, $ionicLoading, ServerPostsData, ServerPostsStorage) {
     var data = []
     $scope.posts = [];
     $scope.storage = '';
-    
+
     $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-c"></i> Loading Data',
+        template: '<i class="icon ion-loading-c"></i> Loading Data',
 
-      //Will a dark overlay or backdrop cover the entire view
-      showBackdrop: false,
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
 
-      // The delay in showing the indicator
-      showDelay: 10
+        // The delay in showing the indicator
+        showDelay: 10
     });
-    
+
     $scope.loadData = function () {
-        
-        $http({method: 'GET', url: ServerPostsData.getURL() + 'page=' + $scope.page, timeout: 5000}).
+
+        $http({ method: 'GET', url: ServerPostsData.getURL() + 'page=' + $scope.page, timeout: 5000 }).
         // this callback will be called asynchronously
         // when the response is available.
-        success(function(data) {
+        success(function (data) {
             $scope.more = data.pages !== $scope.page;
             $scope.posts = $scope.posts.concat(data.posts);
             ServerPostsData.setData($scope.posts);
@@ -285,7 +311,7 @@ angular.module('mobionicApp.controllers', [])
         }).
         // called asynchronously if an error occurs
         // or server returns response with an error status.
-        error(function() {
+        error(function () {
             $scope.posts = ServerPostsStorage.all().posts;
             ServerPostsData.setData(ServerPostsStorage.all().posts);
             $scope.storage = 'Data from local storage';
@@ -293,17 +319,17 @@ angular.module('mobionicApp.controllers', [])
         });
 
     };
-        
+
     $scope.showMoreItems = function () {
         $scope.page += 1;
         $ionicLoading.show({
-        template: '<i class="icon ion-loading-c"></i> Loading Data',
+            template: '<i class="icon ion-loading-c"></i> Loading Data',
 
-        //Will a dark overlay or backdrop cover the entire view
-        showBackdrop: false,
+            //Will a dark overlay or backdrop cover the entire view
+            showBackdrop: false,
 
-        // The delay in showing the indicator
-        showDelay: 10
+            // The delay in showing the indicator
+            showDelay: 10
         });
         $scope.loadData();
     }
@@ -315,29 +341,29 @@ angular.module('mobionicApp.controllers', [])
     $scope.page = 1;
     $scope.more = true;
     $scope.loadData();
-    
+
 })
 
 // ServerPost Controller
-.controller('ServerPostCtrl', function($scope, $stateParams, ServerPostsData, $sce) {
+.controller('ServerPostCtrl', function ($scope, $stateParams, ServerPostsData, $sce) {
 
     $scope.post = ServerPostsData.get($stateParams.serverpostId);
-    
+
     $scope.content = $sce.trustAsHtml($scope.post.content);
-    
+
     $scope.loadURL = function (url) {
         //target: The target in which to load the URL, an optional parameter that defaults to _self. (String)
         //_self: Opens in the Cordova WebView if the URL is in the white list, otherwise it opens in the InAppBrowser.
         //_blank: Opens in the InAppBrowser.
         //_system: Opens in the system's web browser.
-        window.open(url,'_blank');
+        window.open(url, '_blank');
     }
-    
+
     $scope.sharePost = function () {
 
         var subject = $scope.post.title;
         var message = $scope.post.content;
-        message = message.replace(/(<([^>]+)>)/ig,"");
+        message = message.replace(/(<([^>]+)>)/ig, "");
 
         var link = $scope.post.url;
 
@@ -345,105 +371,105 @@ angular.module('mobionicApp.controllers', [])
         //window.plugins.socialsharing.share('Message', 'Subject', 'Image', 'Link');
         window.plugins.socialsharing.share(message, subject, null, link);
     }
-    
+
 })
 
 // RSS Feeds Controller
-.controller('FeedsCtrl', function($scope, $ionicLoading, FeedsData, FeedsStorage) {
-    
+.controller('FeedsCtrl', function ($scope, $ionicLoading, FeedsData, FeedsStorage) {
+
     $scope.feeds = [];
-    
+
     $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-c"></i> Loading Data',
+        template: '<i class="icon ion-loading-c"></i> Loading Data',
 
-      //Will a dark overlay or backdrop cover the entire view
-      showBackdrop: false,
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
 
-      // The delay in showing the indicator
-      showDelay: 10
+        // The delay in showing the indicator
+        showDelay: 10
     });
-    
+
     var data;
-    
+
     FeedsData.async().then(
         // successCallback
-        function() {
+        function () {
             data = FeedsData.getAll();
 
             $scope.title = data.title;
             $scope.description = data.description;
             $scope.link = data.link;
             $scope.feeds = data.entries;
-            
+
             $ionicLoading.hide();
-            
+
         },
         // errorCallback 
-        function() {
+        function () {
             data = FeedsStorage.all();
             console.log(data);
             $scope.storage = 'Data from local storage';
-            
+
             $scope.title = data.title;
             $scope.description = data.description;
             $scope.link = data.link;
             $scope.feeds = data.entries;
-            
+
             $ionicLoading.hide();
         },
         // notifyCallback
-        function() {}
+        function () { }
     );
-    
+
     var page = 1;
     // Define the number of the feed results in the page
     var pageSize = 5;
 
-    $scope.paginationLimit = function(data) {
-    return pageSize * page;
+    $scope.paginationLimit = function (data) {
+        return pageSize * page;
     };
 
-    $scope.hasMoreItems = function() {
-    return page < ($scope.feeds.length / pageSize);
+    $scope.hasMoreItems = function () {
+        return page < ($scope.feeds.length / pageSize);
     };
 
-    $scope.showMoreItems = function() {
-    page = page + 1;
-    $scope.$apply();
-    }; 
-    
-    $scope.getImage = function(index) {
-    var selectedItem = $scope.feeds[index];
-    var content = selectedItem.content;
-    var element = $('<div>').html(content);
-    var source = element.find('img').attr("src");
-    return source;
+    $scope.showMoreItems = function () {
+        page = page + 1;
+        $scope.$apply();
+    };
+
+    $scope.getImage = function (index) {
+        var selectedItem = $scope.feeds[index];
+        var content = selectedItem.content;
+        var element = $('<div>').html(content);
+        var source = element.find('img').attr("src");
+        return source;
     }
-    
+
 })
 
 // RSS Feeds Controller
-.controller('FeedsRefresherCtrl', function($scope, $ionicLoading, FeedsData, FeedsStorage) {
-    
+.controller('FeedsRefresherCtrl', function ($scope, $ionicLoading, FeedsData, FeedsStorage) {
+
     $scope.feeds = [];
-    
+
     $scope.loading = $ionicLoading.show({
-      template: '<i class="icon ion-loading-c"></i> Loading Data',
+        template: '<i class="icon ion-loading-c"></i> Loading Data',
 
-      //Will a dark overlay or backdrop cover the entire view
-      showBackdrop: false,
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
 
-      // The delay in showing the indicator
-      showDelay: 10
+        // The delay in showing the indicator
+        showDelay: 10
     });
-    
+
     var data;
-        
-    var getData = function() {
-    
+
+    var getData = function () {
+
         FeedsData.async().then(
             // successCallback
-            function() {
+            function () {
                 data = FeedsData.getAll();
                 console.log(data);
 
@@ -457,7 +483,7 @@ angular.module('mobionicApp.controllers', [])
 
             },
             // errorCallback 
-            function() {
+            function () {
                 data = FeedsStorage.all();
                 console.log(data);
                 $scope.storage = 'Data from local storage';
@@ -471,47 +497,47 @@ angular.module('mobionicApp.controllers', [])
                 $scope.$broadcast('scroll.refreshComplete');
             },
             // notifyCallback
-            function() {}
+            function () { }
         );
-        
+
     }
-    
+
     getData();
-    
-    $scope.doRefresh = function() {
-        getData();  
+
+    $scope.doRefresh = function () {
+        getData();
     }
-    
-    $scope.getImage = function(index) {
-    var selectedItem = $scope.feeds[index];
-    var content = selectedItem.content;
-    var element = $('<div>').html(content);
-    var source = element.find('img').attr("src");
-    return source;
+
+    $scope.getImage = function (index) {
+        var selectedItem = $scope.feeds[index];
+        var content = selectedItem.content;
+        var element = $('<div>').html(content);
+        var source = element.find('img').attr("src");
+        return source;
     }
-    
+
 })
 
 // RSS Feed Controller
-.controller('FeedCtrl', function($scope, $stateParams, FeedsData, $sce) {
-    
+.controller('FeedCtrl', function ($scope, $stateParams, FeedsData, $sce) {
+
     $scope.entry = FeedsData.get($stateParams.entryId);
-    
+
     $scope.content = $sce.trustAsHtml($scope.entry.content);
-    
+
     $scope.loadURL = function (url) {
         //target: The target in which to load the URL, an optional parameter that defaults to _self. (String)
         //_self: Opens in the Cordova WebView if the URL is in the white list, otherwise it opens in the InAppBrowser.
         //_blank: Opens in the InAppBrowser.
         //_system: Opens in the system's web browser.
-        window.open(url,'_blank');
+        window.open(url, '_blank');
     }
-    
+
     $scope.shareEntry = function () {
 
         var subject = $scope.entry.title;
         var message = $scope.entry.content;
-        message = message.replace(/(<([^>]+)>)/ig,"");
+        message = message.replace(/(<([^>]+)>)/ig, "");
 
         var link = $scope.entry.link;
 
@@ -519,99 +545,99 @@ angular.module('mobionicApp.controllers', [])
         //window.plugins.socialsharing.share('Message', 'Subject', 'Image', 'Link');
         window.plugins.socialsharing.share(message, subject, null, link);
     }
-    
+
 })
 
 
 
 // Plugins Controller
-.controller('PluginsCtrl', function($scope, PluginsData) {
-  $scope.items = PluginsData.items;
+.controller('PluginsCtrl', function ($scope, PluginsData) {
+    $scope.items = PluginsData.items;
 })
 
 // Device Controller
-.controller('DeviceCtrl', function($scope) {
-  $scope.device = device;
+.controller('DeviceCtrl', function ($scope) {
+    $scope.device = device;
 })
 
 // Notifications Controller
-.controller('NotificationsCtrl', function($scope) {
-    
-    $scope.alertNotify = function() {
-    navigator.notification.alert("Sample Alert",function() {console.log("Alert success")},"My Alert","Close");
+.controller('NotificationsCtrl', function ($scope) {
+
+    $scope.alertNotify = function () {
+        navigator.notification.alert("Sample Alert", function () { console.log("Alert success") }, "My Alert", "Close");
     };
 
-    $scope.beepNotify = function() {
-    navigator.notification.beep(1);
+    $scope.beepNotify = function () {
+        navigator.notification.beep(1);
     };
 
-    $scope.vibrateNotify = function() {
-    navigator.notification.vibrate(3000);
+    $scope.vibrateNotify = function () {
+        navigator.notification.vibrate(3000);
     };
 
-    $scope.confirmNotify = function() {
-    navigator.notification.confirm("My Confirmation",function(){console.log("Confirm Success")},"Are you sure?",["Ok","Cancel"]);
+    $scope.confirmNotify = function () {
+        navigator.notification.confirm("My Confirmation", function () { console.log("Confirm Success") }, "Are you sure?", ["Ok", "Cancel"]);
     };
-    
+
 })
 
 // Barcodescanner Controller
-.controller('BarcodescannerCtrl', function($scope) {
-    
-    $scope.scan = function() {
-        cordova.plugins.barcodeScanner.scan(function(result) {
+.controller('BarcodescannerCtrl', function ($scope) {
+
+    $scope.scan = function () {
+        cordova.plugins.barcodeScanner.scan(function (result) {
             $scope.result = result;
             $scope.$apply();
-        }, function(error) {
+        }, function (error) {
             $scope.error = error;
             $scope.$apply();
         });
     };
-    
+
 })
 
 // Geolocation Controller
-.controller('GeolocationCtrl', function($scope, $ionicLoading) {
-    
+.controller('GeolocationCtrl', function ($scope, $ionicLoading) {
+
     $scope.map = {
-    center: {
-        latitude: 45, 
-        longitude: -73
-    },
-    marker: {},
-    zoom: 5
+        center: {
+            latitude: 45,
+            longitude: -73
+        },
+        marker: {},
+        zoom: 5
     };
 
     $scope.loading = $ionicLoading.show({
 
-      //The text to display in the loading indicator
-      template: '<i class="icon ion-loading-c"></i> Getting current location',
+        //The text to display in the loading indicator
+        template: '<i class="icon ion-loading-c"></i> Getting current location',
 
-      //Will a dark overlay or backdrop cover the entire view
-      showBackdrop: false,
+        //Will a dark overlay or backdrop cover the entire view
+        showBackdrop: false,
 
-      // The delay in showing the indicator
-      showDelay: 10
+        // The delay in showing the indicator
+        showDelay: 10
     });
 
     var options = { enableHighAccuracy: true };
-    navigator.geolocation.getCurrentPosition(function(position) {
+    navigator.geolocation.getCurrentPosition(function (position) {
 
         $scope.map = {
             center: {
-                latitude: position.coords.latitude, 
+                latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             },
             marker: {
-                latitude: position.coords.latitude, 
+                latitude: position.coords.latitude,
                 longitude: position.coords.longitude
             },
-            zoom: 12
+            zoom: 14
         };
 
         $ionicLoading.hide();
-        
-        }, function(error) {
+
+    }, function (error) {
         alert('Unable to get location: ' + error.message);
         $ionicLoading.hide();
     }, options);
@@ -620,100 +646,100 @@ angular.module('mobionicApp.controllers', [])
 })
 
 // Seetings Controller
-.controller('SettingsCtrl', function($scope, SettingsStorage, NewsStorage, ProductsStorage, AboutStorage, FeedsStorage, PostsStorage, ServerPostsStorage) {
- 
+.controller('SettingsCtrl', function ($scope, SettingsStorage, NewsStorage, ProductsStorage, AboutStorage, FeedsStorage, PostsStorage, ServerPostsStorage) {
+
     $scope.settings = SettingsStorage.all();
 
-    $scope.saveSettings = function() {
+    $scope.saveSettings = function () {
         SettingsStorage.save($scope.settings);
     };
-    
-    $scope.$watch('settings', function() { SettingsStorage.save($scope.settings) }, true);
-    
-    $scope.resetSettings = function() {
+
+    $scope.$watch('settings', function () { SettingsStorage.save($scope.settings) }, true);
+
+    $scope.resetSettings = function () {
         SettingsStorage.clear();
         $scope.settings = SettingsStorage.all();
     };
-    
-    $scope.resetNewsStorage = function() {
+
+    $scope.resetNewsStorage = function () {
         NewsStorage.clear();
     };
-    
-    $scope.resetProductsStorage = function() {
+
+    $scope.resetProductsStorage = function () {
         ProductsStorage.clear();
     };
-    
-    $scope.resetAboutStorage = function() {
+
+    $scope.resetAboutStorage = function () {
         AboutStorage.clear();
     };
-    
-    $scope.resetFeedsStorage = function() {
+
+    $scope.resetFeedsStorage = function () {
         FeedsStorage.clear();
     };
-    
-    $scope.resetPostsStorage = function() {
+
+    $scope.resetPostsStorage = function () {
         PostsStorage.clear();
     };
-    
-    $scope.resetServerPostsStorage = function() {
+
+    $scope.resetServerPostsStorage = function () {
         ServerPostsStorage.clear();
     };
-    
+
 })
 
-.controller('AppCtrl', function($scope, $ionicModal, $timeout, MenuData, $ionicActionSheet) {
-    
-  $scope.items = MenuData.items;
-    
-  // Form data for the login modal
-  $scope.loginData = {};
+.controller('AppCtrl', function ($scope, $ionicModal, $timeout, MenuData, $ionicActionSheet) {
 
-  // Create the login modal that we will use later
-  $ionicModal.fromTemplateUrl('templates/login.html', {
-    scope: $scope
-  }).then(function(modal) {
-    $scope.modal = modal;
-  });
+    $scope.items = MenuData.items;
 
-  // Triggered in the login modal to close it
-  $scope.closeLogin = function() {
-    $scope.modal.hide();
-  },
+    // Form data for the login modal
+    $scope.loginData = {};
 
-  // Open the login modal
-  $scope.login = function() {
-    $scope.modal.show();
-  };
+    // Create the login modal that we will use later
+    $ionicModal.fromTemplateUrl('templates/login.html', {
+        scope: $scope
+    }).then(function (modal) {
+        $scope.modal = modal;
+    });
 
-  // Perform the login action when the user submits the login form
-  $scope.doLogin = function() {
-    console.log('Doing login', $scope.loginData);
+    // Triggered in the login modal to close it
+    $scope.closeLogin = function () {
+        $scope.modal.hide();
+    },
 
-    // Simulate a login delay. Remove this and replace with your login
-    // code if using a login system
-    $timeout(function() {
-      $scope.closeLogin();
-    }, 1000);
-  };
-    
+    // Open the login modal
+    $scope.login = function () {
+        $scope.modal.show();
+    };
+
+    // Perform the login action when the user submits the login form
+    $scope.doLogin = function () {
+        console.log('Doing login', $scope.loginData);
+
+        // Simulate a login delay. Remove this and replace with your login
+        // code if using a login system
+        $timeout(function () {
+            $scope.closeLogin();
+        }, 1000);
+    };
+
     // Triggered on a button click, or some other target
-    $scope.show = function() {
+    $scope.show = function () {
 
         // Show the action sheet
         var hideSheet = $ionicActionSheet.show({
-         buttons: [
-           { text: '<b>Share</b> This' },
-           { text: 'Move' }
-         ],
-         destructiveText: 'Delete',
-         titleText: 'Modify your album',
-         cancelText: 'Cancel',
-         cancel: function() {
-              // add cancel code..
+            buttons: [
+              { text: '<b>Share</b> This' },
+              { text: 'Move' }
+            ],
+            destructiveText: 'Delete',
+            titleText: 'Modify your album',
+            cancelText: 'Cancel',
+            cancel: function () {
+                // add cancel code..
             },
-         buttonClicked: function(index) {
-           return true;
-         }
+            buttonClicked: function (index) {
+                return true;
+            }
         });
 
     };
