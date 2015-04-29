@@ -112,15 +112,6 @@ angular.module('mobionicApp', ['ionic', 'mobionicApp.controllers', 'mobionicApp.
         }
       }
     })
-    .state('app.flickr', {
-        url: "/flickr",
-        views: {
-            'menuContent': {
-                templateUrl: "templates/flickr.html",
-                controller: 'FlickrCtrl'
-            }
-        }
-    })
 
     .state('app.gallery', {
       url: "/gallery",
@@ -327,6 +318,16 @@ angular.module('mobionicApp', ['ionic', 'mobionicApp.controllers', 'mobionicApp.
           controller: 'SettingsCtrl'
         }
       }
+    })
+
+    .state('app.flickr', {
+        url: "/flickr",
+        views: {
+            'menuContent': {
+                templateUrl: "templates/flickr.html",
+                controller: 'FlickrCtrl'
+            }
+        }
     })
 
     // if none of the above states are matched, use this as the fallback

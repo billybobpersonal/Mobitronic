@@ -128,6 +128,8 @@ C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\json \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\lib \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\plugins \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\templates \
+C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\css\angular-material.min.css \
+C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\css\material-ionic.min.css \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\css\style.css \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\font\OFL.txt \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\font\SourceSansPro-Black.ttf \
@@ -175,8 +177,12 @@ C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\img\produc
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\img\products-1-4.jpg \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\img\products-1-5.jpg \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\img\products-1-6.jpg \
+C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\angular-animate.min.js \
+C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\angular-aria.min.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\angular-google-maps.min.js \
+C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\angular-material.min.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\angular-sanitize.js \
+C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\angular.min.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\app.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\controllers.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\data.js \
@@ -185,6 +191,7 @@ C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\filters
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\jquery-1.11.1.min.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\local-storage.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\lodash.underscore.min.js \
+C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\material-ionic.min.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\pushwoosh-android.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\js\pushwoosh-ios.js \
 C:\Develop\MobionicVisualStudio\Mobionic\platforms\android\assets\www\json\about.json \

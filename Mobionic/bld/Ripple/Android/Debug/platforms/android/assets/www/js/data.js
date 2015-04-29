@@ -29,6 +29,12 @@ angular.module('mobionicApp.data', [])
             note: 'Find Us',
             url: '#/app/map'
         },
+        {
+            title: 'Geolocation',
+            icon: 'ion-location',
+            note: 'Geolocation API',
+            url: '#/app/plugins/geolocation'
+        },
         { 
             title: 'About',
             icon: 'ion-person-stalker',
@@ -48,15 +54,9 @@ angular.module('mobionicApp.data', [])
             url: '#/app/feeds'
         },
         { 
-            title: 'RSS (Pull to refresh)',
-            icon: 'ion-social-rss',
-            note: 'RSS Feed',
-            url: '#/app/feeds-refresher'
-        },
-        {
             title: 'Flickr',
-            icon: 'ion-map',
-            note: 'Find Us',
+            icon: 'ion-person-stalker',
+            note: 'Flickr',
             url: '#/app/flickr'
         },
         //{ 
@@ -151,36 +151,55 @@ angular.module('mobionicApp.data', [])
     var data = {};
     
     data.map = {
-        zoom: 17,
+        zoom: 12,
         center: {
-            latitude: -34.07436912,
-            longitude: 18.8491003,
+            latitude: 40.74,
+            longitude: -74.18
         },
         markers: [
         {
             id: 1,
             icon: 'img/blue_marker.png',
-            latitude: -34.0737915,
-            longitude: 18.851187,
+            latitude: 40.71,
+            longitude: -74.21,
             title: 'This is our main store'
         }, 
         {
             id: 2,
-            latitude: -34.0739747,
-            longitude: 18.8511146,
+            latitude: 40.72,
+            longitude: -74.20,
             title: 'This is our second store'
         },
         {
             id: 3,
-            latitude: -34.074438,
-            longitude: 18.8486229,
+            latitude: 40.73,
+            longitude: -74.19,
             title: 'This is our third store'
         },
         {
             id: 4,
-            latitude: -34.0738148,
-            longitude: 18.8508954,
+            latitude: 40.74,
+            longitude: -74.18,
             title: 'This is our fourth store'
+        },
+        {
+            id: 5,
+            latitude: 40.75,
+            longitude: -74.17,
+            title: 'This is our fifth store'
+        },
+        {
+            id: 6,
+            latitude: 40.76,
+            longitude: -74.16,
+            title: 'This is our sixth store'
+        },
+        {
+            id: 7,
+            icon: 'img/plane.png',
+            latitude: 40.77,
+            longitude: -74.15,
+            title: 'Airport'
         }]
     };
 
