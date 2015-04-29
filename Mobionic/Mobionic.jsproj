@@ -2445,6 +2445,7 @@
     <Content Include="www\templates\feed.html" />
     <Content Include="www\templates\feeds-refresher.html" />
     <Content Include="www\templates\feeds.html" />
+    <Content Include="www\templates\flickr.html" />
     <Content Include="www\templates\gallery.html" />
     <Content Include="www\templates\grid.html" />
     <Content Include="www\templates\home.html" />

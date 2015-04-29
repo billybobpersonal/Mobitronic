@@ -1,0 +1,47 @@
+{
+	"id": 1,
+	"total": 1,
+	"result": [
+        {
+            "id": 1,
+            "picture": "img/member-1.jpg",
+            "title": "Ryan Blake",
+            "subtitle": "Founder & CEO",
+            "body": "Ryan is a legend!",
+            "email": "ryanblake101@gmail.com",
+            "linkedin": "linkedin",
+            "twitter": "@ryanblakelegend"
+
+        },
+        {
+            "id": 2,
+            "picture": "img/member-2.jpg",
+            "title": "Mark Zuckerberg",
+            "subtitle": "Founder & CEO",
+            "body": "Funder of Facebook",
+            "email": "mark@facebook.com",
+            "linkedin": "linkedin",
+            "twitter": "@markzuckerberg"
+        },
+        {
+            "id": 3,
+            "picture": "img/member-3.jpg",
+            "title": "Sergey Brin",
+            "subtitle": "Founder & CEO",
+            "body": "Founder of Google",
+            "email": "sergey@google.com",
+            "linkedin": "linkedin",
+            "twitter": "@sergeybrin"
+        }, 
+        {
+            "id": 4,
+            "picture": "img/member-4.jpg",
+            "title": "Bill Gates",
+            "subtitle": "Founder & CEO",
+            "body": "Founder of Micorsoft",
+            "email": "bill@micorsoft.com",
+            "linkedin": "linkedin",
+            "twitter": "@billgates"
+        }
+	]
+}

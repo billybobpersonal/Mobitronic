@@ -1,9 +1,9 @@
 angular.module('mobionicApp.data', [])
 
 // Home Data: Home page configuration
-.factory('Data', function(){
+.factory('Data', function () {
     var data = {};
-    
+
     data.items = [
         //{ 
         //    title: 'News',
@@ -23,35 +23,41 @@ angular.module('mobionicApp.data', [])
         //    note: 'Our Photos',
         //    url: '#/app/gallery'
         //},
-        { 
+        {
             title: 'Map',
             icon: 'ion-map',
             note: 'Find Us',
             url: '#/app/map'
         },
-        { 
+        {
+            title: 'Geolocation',
+            icon: 'ion-location',
+            note: 'Geolocation API',
+            url: '#/app/plugins/geolocation'
+        },
+        {
             title: 'About',
             icon: 'ion-person-stalker',
             note: 'About Us',
             url: '#/app/about'
         },
-        { 
+        {
             title: 'Contact',
             icon: 'ion-email',
             note: 'Contact Us',
             url: '#/app/contact'
         },
-        { 
+        {
             title: 'RSS',
             icon: 'ion-social-rss',
             note: 'RSS Feed',
             url: '#/app/feeds'
         },
-        { 
-            title: 'RSS (Pull to refresh)',
-            icon: 'ion-social-rss',
-            note: 'RSS Feed',
-            url: '#/app/feeds-refresher'
+        {
+            title: 'Flickr',
+            icon: 'ion-person-stalker',
+            note: 'Flickr',
+            url: '#/app/flickr'
         },
         //{ 
         //    title: 'Wordpress JSON',
@@ -71,79 +77,79 @@ angular.module('mobionicApp.data', [])
         //    note: 'Cordova/PhoneGap',
         //    url: '#/app/plugins'
         //},
-    ]; 
-    
+    ];
+
     return data;
 })
 
 // Menu Data: Menu configuration
-.factory('MenuData', function(){
+.factory('MenuData', function () {
     var data = {};
-    
+
     data.items = [
-        { 
+        {
             title: 'Home',
             icon: 'ion-ios7-home',
             url: '#/app'
-        },        
-        { 
+        },
+        {
             title: 'Elements',
             icon: 'ion-code',
             url: '#/app/elements'
-        },        
-        { 
+        },
+        {
             title: 'Tabs',
             icon: 'ion-ios7-albums-outline',
             url: '#/app/tabs'
         },
-        { 
+        {
             title: 'Grid',
             icon: 'ion-grid',
             url: '#/app/grid'
         }
-    ]; 
-    
+    ];
+
     return data;
 })
 
 // Plugins Data: Mobile Plugins configuration
-.factory('PluginsData', function(){
+.factory('PluginsData', function () {
     var data = {};
-    
+
     data.items = [
-        { 
+        {
             title: 'Device',
             icon: 'ion-ipad',
             note: 'Device API',
             url: '#/app/plugins/device'
         },
-        { 
+        {
             title: 'Geolocation',
             icon: 'ion-location',
             note: 'Geolocation API',
             url: '#/app/plugins/geolocation'
         },
-        { 
+        {
             title: 'Notifications',
             icon: 'ion-alert',
             note: 'Dialogs API',
             url: '#/app/plugins/notifications'
         },
-        { 
+        {
             title: 'Barcode',
             icon: 'ion-qr-scanner',
             note: 'Barcode Scanner',
             url: '#/app/plugins/barcodescanner'
         }
-    ]; 
-    
+    ];
+
     return data;
 })
 
 // Map Data: Map configuration
-.factory('MapData', function(){
+.factory('MapData', function () {
     var data = {};
-    
+
     data.map = {
         zoom: 12,
         center: {
@@ -157,7 +163,7 @@ angular.module('mobionicApp.data', [])
             latitude: 40.71,
             longitude: -74.21,
             title: 'This is our main store'
-        }, 
+        },
         {
             id: 2,
             latitude: 40.72,
@@ -201,70 +207,70 @@ angular.module('mobionicApp.data', [])
 })
 
 // Gallery Data: Gallery configuration
-.factory('GalleryData', function(){
+.factory('GalleryData', function () {
     var data = {};
-    
+
     data.items = [
-        { 
+        {
             label: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
             src: 'img/gallery-1.jpg',
             location: 'New York, June 2014'
         },
-        { 
+        {
             label: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
             src: 'img/gallery-2.jpg',
             location: 'Athens, August 2013'
         },
-        { 
+        {
             label: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             src: 'img/gallery-3.jpg',
             location: 'Tokyo, May 2013'
         }
-    ]; 
-    
+    ];
+
     return data;
 })
 
 // News Data: JSON
-.factory('NewsData', function($http, $q, NewsStorage) {
-    
+.factory('NewsData', function ($http, $q, NewsStorage) {
+
     var json = 'json/news.json';
 
     var deferred = $q.defer();
     var promise = deferred.promise;
     var data = [];
     var service = {};
-    
-    service.async = function() {
-    $http({method: 'GET', url: json, timeout: 5000}).
-    // this callback will be called asynchronously
-    // when the response is available.
-    success(function(d) {
-        data = d.result;
-        NewsStorage.save(data);
-        deferred.resolve();
-    }).
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    error(function() {
-        data = NewsStorage.all();
-        deferred.reject();
-    });
-        
-    return promise;
-        
-    };
-    
-    service.getAll = function() { return data; };
 
-    service.get = function(newId) { return data[newId]; };
+    service.async = function () {
+        $http({ method: 'GET', url: json, timeout: 5000 }).
+        // this callback will be called asynchronously
+        // when the response is available.
+        success(function (d) {
+            data = d.result;
+            NewsStorage.save(data);
+            deferred.resolve();
+        }).
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        error(function () {
+            data = NewsStorage.all();
+            deferred.reject();
+        });
+
+        return promise;
+
+    };
+
+    service.getAll = function () { return data; };
+
+    service.get = function (newId) { return data[newId]; };
 
     return service;
 })
 
 // Products Data: JSON
-.factory('ProductsData', function($http, $q, ProductsStorage) {
-    
+.factory('ProductsData', function ($http, $q, ProductsStorage) {
+
     var json = 'json/products.json';
 
     var deferred = $q.defer();
@@ -272,106 +278,106 @@ angular.module('mobionicApp.data', [])
     var data = [];
     var service = {};
 
-    service.async = function() {
-    $http({method: 'GET', url: json, timeout: 5000}).
-    // this callback will be called asynchronously
-    // when the response is available.
-    success(function(d) {
-        data = d.result;
-        ProductsStorage.save(data);
-        deferred.resolve();
-    }).
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    error(function() {
-        data = ProductsStorage.all();
-        deferred.reject();
-    });
-        
-    return promise;
-        
+    service.async = function () {
+        $http({ method: 'GET', url: json, timeout: 5000 }).
+        // this callback will be called asynchronously
+        // when the response is available.
+        success(function (d) {
+            data = d.result;
+            ProductsStorage.save(data);
+            deferred.resolve();
+        }).
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        error(function () {
+            data = ProductsStorage.all();
+            deferred.reject();
+        });
+
+        return promise;
+
     };
 
-    service.getAll = function() { return data; };
+    service.getAll = function () { return data; };
 
-    service.get = function(productId) { return data[productId]; };
+    service.get = function (productId) { return data[productId]; };
 
-    service.getLetterLimit = function() { return 100; };
+    service.getLetterLimit = function () { return 100; };
 
     return service;
 })
 
 // Gallery Data: Gallery configuration
-.factory('GalleryData', function(){
+.factory('GalleryData', function () {
     var data = {};
-    
+
     data.items = [
-        { 
+        {
             description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit.',
             src: 'img/gallery-1.jpg',
             location: 'New York, June 2014'
         },
-        { 
+        {
             description: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco.',
             src: 'img/gallery-2.jpg',
             location: 'Athens, August 2013'
         },
-        { 
+        {
             description: 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
             src: 'img/gallery-3.jpg',
             location: 'Tokyo, May 2013'
         }
-    ]; 
-    
+    ];
+
     return data;
 })
 
 // About Data: JSON
-.factory('AboutData', function($http, $q, AboutStorage) {
-    
+.factory('AboutData', function ($http, $q, AboutStorage) {
+
     var json = 'json/about.json';
-    
+
     var deferred = $q.defer();
     var promise = deferred.promise;
     var data = [];
     var service = {};
-    
-    service.async = function() {
-    $http({method: 'GET', url: json, timeout: 5000}).
-    // this callback will be called asynchronously
-    // when the response is available.
-    success(function(d) {
-        data = d.result;
-        AboutStorage.save(data);
-        deferred.resolve();
-    }).
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    error(function() {
-        data = AboutStorage.all();
-        deferred.reject();
-    });
-        
-    return promise;
-        
-    };
-    
-    service.getAll = function() { return data; };
 
-    service.get = function(memberId) { return data[memberId]; };
+    service.async = function () {
+        $http({ method: 'GET', url: json, timeout: 5000 }).
+        // this callback will be called asynchronously
+        // when the response is available.
+        success(function (d) {
+            data = d.result;
+            AboutStorage.save(data);
+            deferred.resolve();
+        }).
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        error(function () {
+            data = AboutStorage.all();
+            deferred.reject();
+        });
+
+        return promise;
+
+    };
+
+    service.getAll = function () { return data; };
+
+    service.get = function (memberId) { return data[memberId]; };
 
     return service;
 })
 
 // Posts Data: JSON Wordpress Posts configuration
-.factory('PostsData', function($http, $q, PostsStorage) {
-    
+.factory('PostsData', function ($http, $q, PostsStorage) {
+
     /* (For DEMO purposes) Local JSON data */
     var json = 'json/wordpress.json';
-    
+
     /* Set your URL as you can see in the following example */
     // var json = 'YourWordpressURL/?json=get_recent_posts';
-    
+
     /* With user-friendly permalinks configured */
     // var json = 'YourWordpressURL/api/get_recent_posts';
 
@@ -379,129 +385,129 @@ angular.module('mobionicApp.data', [])
     var promise = deferred.promise;
     var data = [];
     var service = {};
-    
-    service.async = function() {
-    $http({method: 'GET', url: json, timeout: 5000}).
-    // this callback will be called asynchronously
-    // when the response is available.
-    success(function(d) {
-        data = d;
-        PostsStorage.save(data);
-        deferred.resolve();
-    }).
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    error(function() {
-        data = PostsStorage.all();
-        deferred.reject();
-    });
-        
-    return promise;
-        
-    };
-    
-    service.getAll = function() { return data; };
 
-    service.get = function(postId) { return data.posts[postId]; };
+    service.async = function () {
+        $http({ method: 'GET', url: json, timeout: 5000 }).
+        // this callback will be called asynchronously
+        // when the response is available.
+        success(function (d) {
+            data = d;
+            PostsStorage.save(data);
+            deferred.resolve();
+        }).
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        error(function () {
+            data = PostsStorage.all();
+            deferred.reject();
+        });
+
+        return promise;
+
+    };
+
+    service.getAll = function () { return data; };
+
+    service.get = function (postId) { return data.posts[postId]; };
 
     return service;
 })
 
 // ServerPosts Data: JSON Wordpress Posts configuration with Server Side pagination
-.factory('ServerPostsData', function($http, $q, ServerPostsStorage) {
-    
+.factory('ServerPostsData', function ($http, $q, ServerPostsStorage) {
+
     var data = [];
     var service = {};
-    
+
     /* (For DEMO purposes) Local JSON data */
     var json = 'json/serverposts&';
-    
+
     /* Set your URL as you can see in the following example */
     /* NOTE: In case of the default permalinks, you should add '&' at the end of the url */
     // var json = 'YourWordpressURL/?json=get_recent_posts&';
-    
+
     /* With user-friendly permalinks configured */
     /* NOTE: In case of the user-friendly permalinks, you should add '?' at the end of the url */
     // var json = 'YourWordpressURL/api/get_recent_posts?';
-    
-    service.getURL = function() { return json; };
-    
-    service.setData = function(posts) { data = posts; };
 
-    service.get = function(serverpostId) { return data[serverpostId]; };
-    
+    service.getURL = function () { return json; };
+
+    service.setData = function (posts) { data = posts; };
+
+    service.get = function (serverpostId) { return data[serverpostId]; };
+
     return service;
 })
 
 // RSS Feeds Data: JSON
-.factory('FeedsData', function($http, $q, FeedsStorage) {
-    
+.factory('FeedsData', function ($http, $q, FeedsStorage) {
+
     var xml = 'https://news.google.co.za/news?pz=1&cf=all&ned=en_za&hl=en&output=rss';
     var url = 'http://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(xml);
-    
+
     var deferred = $q.defer();
     var promise = deferred.promise;
     var data = [];
     var service = {};
-    var entries = []; 
-    
-    service.async = function() {
-    $http({method: 'JSONP', url: url, timeout: 5000}).
-    // this callback will be called asynchronously
-    // when the response is available.
-    success(function(d) {
-        data = d;
-        FeedsStorage.save(data.responseData.feed);
-        entries = data.responseData.feed.entries;
-        deferred.resolve();
-    }).
-    // called asynchronously if an error occurs
-    // or server returns response with an error status.
-    error(function() {
-        data = FeedsStorage.all();
-        entries = data.entries;
-        deferred.reject();
-    });
-        
-    return promise;
-        
-    };
-    
-    service.getAll = function() { return data.responseData.feed; };
+    var entries = [];
 
-    service.get = function(entryId) { return entries[entryId];  };
+    service.async = function () {
+        $http({ method: 'JSONP', url: url, timeout: 5000 }).
+        // this callback will be called asynchronously
+        // when the response is available.
+        success(function (d) {
+            data = d;
+            FeedsStorage.save(data.responseData.feed);
+            entries = data.responseData.feed.entries;
+            deferred.resolve();
+        }).
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        error(function () {
+            data = FeedsStorage.all();
+            entries = data.entries;
+            deferred.reject();
+        });
+
+        return promise;
+
+    };
+
+    service.getAll = function () { return data.responseData.feed; };
+
+    service.get = function (entryId) { return entries[entryId]; };
 
     return service;
 })
 
 // Settings Data: Settings configuration
-.factory('SettingsData', function(){
+.factory('SettingsData', function () {
     var data = {};
-    
+
     data.items = {
         options: [
         {
-           name: 'First Option',
-           value: true
-        }, 
+            name: 'First Option',
+            value: true
+        },
         {
-           name: 'Second Option',
-           value: false
-        }, 
+            name: 'Second Option',
+            value: false
+        },
         {
-           name: 'Third Option',
-           value: false
-        }, 
+            name: 'Third Option',
+            value: false
+        },
         {
-           name: 'Fourth Option',
-           value: false
-        }, 
+            name: 'Fourth Option',
+            value: false
+        },
         {
-           name: 'Fifth Option',
-           value: false
+            name: 'Fifth Option',
+            value: false
         }],
         sorting: 'A',
-        range:30
+        range: 30
     };
 
     return data;
