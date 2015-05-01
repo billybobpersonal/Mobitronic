@@ -151,55 +151,48 @@ angular.module('mobionicApp.data', [])
     var data = {};
 
     data.map = {
-        zoom: 12,
+        zoom: 18,
         center: {
-            latitude: 40.74,
-            longitude: -74.18
+            latitude: -34.0697865,
+            longitude: 18.8230125
         },
         markers: [
         {
             id: 1,
             icon: 'img/blue_marker.png',
-            latitude: 40.71,
-            longitude: -74.21,
-            title: 'This is our main store'
+            latitude: -34.0697865,
+            longitude: 18.8230125,
+            title: 'Rainfin'
         },
         {
             id: 2,
-            latitude: 40.72,
-            longitude: -74.20,
-            title: 'This is our second store'
+            latitude: -34.0695588,
+            longitude: 18.8232218,
+            title: 'Virgin Active'
         },
         {
             id: 3,
-            latitude: 40.73,
-            longitude: -74.19,
-            title: 'This is our third store'
+            latitude: -34.0691583,
+            longitude: 18.8225365,
+            title: 'Indigo Spur'
         },
         {
             id: 4,
-            latitude: 40.74,
-            longitude: -74.18,
-            title: 'This is our fourth store'
+            latitude: -34.0701204,
+            longitude: 18.8230139,
+            title: 'Pick n Pay'
         },
         {
             id: 5,
-            latitude: 40.75,
-            longitude: -74.17,
-            title: 'This is our fifth store'
+            latitude: -34.0699082,
+            longitude: 18.822511,
+            title: 'Woolworths'
         },
         {
             id: 6,
-            latitude: 40.76,
-            longitude: -74.16,
-            title: 'This is our sixth store'
-        },
-        {
-            id: 7,
-            icon: 'img/plane.png',
-            latitude: 40.77,
-            longitude: -74.15,
-            title: 'Airport'
+            latitude: -34.0703448,
+            longitude: 18.8233733,
+            title: 'Biltong Shop'
         }]
     };
 
