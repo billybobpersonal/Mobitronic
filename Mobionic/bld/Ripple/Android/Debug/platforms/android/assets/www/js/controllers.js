@@ -150,60 +150,38 @@ angular.module('mobionicApp.controllers', [])
 
     //alert('Fetching');
 
-    //$scope.loading = $ionicLoading.show({
-
-    //    //The text to display in the loading indicator
-    //    template: '<i class="icon ion-loading-c"></i> Getting current location',
-
-    //    //Will a dark overlay or backdrop cover the entire view
-    //    showBackdrop: false,
-
-    //    // The delay in showing the indicator
-    //    showDelay: 10
-    //});
-        var flickr_api = {};
-        flickr_api = {
-            method: 'flickr.photos.search',
-            api_key: 'b91b58cf5e8481433977e1945b5259ee',
-            content_type: 1,
-            media: 'photos',
-            lat: 0,
-            lon: 0,
-            radius: 10,
-            radius_units: 'km',
-            per_page: 30,
-            page: '',
-            format: 'json',
-            nojsoncallback: 1
-        };
+    //Setup Flickr API properties
+    var flickr_api = {};
+    flickr_api = {
+        method: 'flickr.photos.search',
+        api_key: 'b91b58cf5e8481433977e1945b5259ee',
+        content_type: 1,
+        media: 'photos',
+        lat: 0,
+        lon: 0,
+        radius: 10,
+        radius_units: 'km',
+        per_page: 30,
+        page: '',
+        format: 'json',
+        nojsoncallback: 1
+    };
 
     //alert('Set API Values');
 
+    //Get and assign Retreived Geolocation
     var options = { enableHighAccuracy: true };
     navigator.geolocation.getCurrentPosition(function (position) {
 
         flickr_api.lat = position.coords.latitude;
-        flickr_api.lon = position.coords.longitude;
-
-        //$scope.map = {
-        //    center: {
-        //        latitude: position.coords.latitude,
-        //        longitude: position.coords.longitude
-        //    },
-        //    marker: {
-        //        latitude: position.coords.latitude,
-        //        longitude: position.coords.longitude
-        //    },
-        //    zoom: 14
-        //};
-        //alert('Got a Location! ' + flickr_api.lat + ' ' + flickr_api.lon);
-        //$ionicLoading.hide();
+        flickr_api.lon = position.coords.longitude;        
 
     }, function (error) {
         alert('Unable to get location: ' + error.message);
         //$ionicLoading.hide();
     }, options);    
 
+    //Method used to Get the photos from Flickr
     $scope.fetchPhotos = function () {
         $scope.failed = false;
         $scope.isFetching = true;        

@@ -8,6 +8,7 @@
            
             <div class="list">
                 <a class="item" ng-repeat="photo in feeds.photos.photo">
+                    <!--Need to Translate the Json to a valid URL-->
                     <img width="100%" src="https://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}.jpg'">                                     
                 </a>
             </div>

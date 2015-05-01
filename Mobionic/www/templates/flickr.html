@@ -2,28 +2,14 @@
     <ion-content class="has-header" overflow-scroll="true">
 
         <div ng-controller="FlickrCtrl">
-            <!--<ons-list>
-                <ons-list-item class="center">
-                    <ons-button type="cta" should-spin="{{isFetching}}" ng-click="fetchPhotos()">Fetch Photos</ons-button>
-                </ons-list-item>
-
-                <ons-list-item ng-animate="'zoom'" ng-show="failed">
-                    Oops! looks like Flickr is down.
-                </ons-list-item>
-
-                <ons-list-item ng-repeat="item in feeds.items">
-                    <img width="100%" ng-src="{{item.media.m}}">
-                </ons-list-item>
-            </ons-list>-->
-
             <button class="button button-block button-positive" ng-click="fetchPhotos()">
-                Fetch Photos
+                Fetch Photos Taken Nearby
             </button>
-           
+
             <div class="list">
-                <a class="item item-thumbnail-left" ng-repeat="item in feeds.items">
-                    <img width="100%" src="{{item.media.m}}">
-                    <p ng-bind-html="item.description"></p>                 
+                <a class="item" ng-repeat="photo in feeds.photos.photo">
+                    <!--Need to Translate the Json to a valid URL-->
+                    <img width="100%" src="https://farm{{photo.farm}}.static.flickr.com/{{photo.server}}/{{photo.id}}_{{photo.secret}}.jpg'">
                 </a>
             </div>
         </div>
