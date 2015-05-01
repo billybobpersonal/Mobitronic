@@ -170,7 +170,7 @@ angular.module('mobionicApp.controllers', [])
             lat: 0,
             lon: 0,
             radius: 10,
-            radius_units: 'mi',
+            radius_units: 'km',
             per_page: 30,
             page: '',
             format: 'json',
